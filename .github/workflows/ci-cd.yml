@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+            
+            - name: Configure NodeJs
+              uses: actions/setup-node@v3
+              with:
+                node-version: '20'
+            
+            - name: Install Dependencies
+              run: npm install
+
+            - name: Compile Typescript
+              run: npm run build
+            
+            # - name: Execute Tests
+            #   run: npm test
+
+            - name: Deploy - Echo
+              if: github.ref == 'refs/heads/master'
+              run: echo "Running Deploy"
