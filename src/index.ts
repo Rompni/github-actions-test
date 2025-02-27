@@ -1,9 +1,9 @@
-import express from 'express';
+import express from "express";
 
-const app = express();
+const app = express()
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
+app.get('/', (req: Express.Request, res: any) => {
     res.send('Hola, CI/CD!');
 });
 
